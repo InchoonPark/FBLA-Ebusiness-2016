@@ -260,8 +260,83 @@ hr.colored {
 .navbar .navbar-nav li a:focus {
   outline: none;
 }
+
+
+/** from Background.css*/
+.fs-background {
+  overflow: hidden;
+  /*position: relative;*/
+}
+.fs-background,
+.fs-background-container,
+.fs-background-media {
+  -webkit-transition: none;
+  transition: none;
+}
+.fs-background-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.fs-background-media {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+.fs-background-media.fs-background-animated {
+  -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
+}
+.fs-background-media img,
+.fs-background-media video,
+.fs-background-media iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-user-drag: none;
+}
+.fs-background-media.fs-background-native,
+.fs-background-media.fs-background-fixed {
+  width: 100%;
+  height: 100%;
+}
+.fs-background-media.fs-background-native img,
+.fs-background-media.fs-background-fixed img {
+  display: none;
+}
+.fs-background-media.fs-background-native {
+  background-position: center;
+  background-size: cover;
+}
+.fs-background-media.fs-background-fixed {
+  background-position: center;
+  background-attachment: fixed;
+}
+.fs-background-embed.fs-background-ready:after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: '';
+}
+.fs-background-embed.fs-background-ready iframe {
+  z-index: 0;
+}
+
+div.vide{
+  position:static;
+}
+
 header {
-  position: relative;
+  /**position: relative;*/
   display: block;
   height: auto;
   width: auto;
@@ -353,77 +428,6 @@ header .scroll-down .btn:hover {
     max-height: 300px;
   }
 }
-
-
-/** from Background.css*/
-.fs-background {
-  overflow: hidden;
-  position: relative;
-}
-.fs-background,
-.fs-background-container,
-.fs-background-media {
-  -webkit-transition: none;
-  transition: none;
-}
-.fs-background-container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-.fs-background-media {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-}
-.fs-background-media.fs-background-animated {
-  -webkit-transition: opacity 0.5s linear;
-  transition: opacity 0.5s linear;
-}
-.fs-background-media img,
-.fs-background-media video,
-.fs-background-media iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  -webkit-user-drag: none;
-}
-.fs-background-media.fs-background-native,
-.fs-background-media.fs-background-fixed {
-  width: 100%;
-  height: 100%;
-}
-.fs-background-media.fs-background-native img,
-.fs-background-media.fs-background-fixed img {
-  display: none;
-}
-.fs-background-media.fs-background-native {
-  background-position: center;
-  background-size: cover;
-}
-.fs-background-media.fs-background-fixed {
-  background-position: center;
-  background-attachment: fixed;
-}
-.fs-background-embed.fs-background-ready:after {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  content: '';
-}
-.fs-background-embed.fs-background-ready iframe {
-  z-index: 0;
-}
-
 @media (min-width: 1025px) {
   header {
     background-attachment: fixed;
@@ -431,15 +435,11 @@ header .scroll-down .btn:hover {
 }
 header.video .overlay {
   position: absolute;
-  min-height: 100px;
   height: 100%;
   width: 100%;
   background: #000;
   z-index: 998;
-  opacity: 0;
-}
-div.vide{
-  position:static;
+  opacity: 1;
 }
 header.video .intro-content {
   z-index: 999;
@@ -452,6 +452,7 @@ header.video .scroll-down {
     opacity: 1;
   }
 }
+
 aside.cta-quote {
   color: white;
   background-color: #222222;
@@ -484,8 +485,8 @@ aside.cta-quote span.quote {
     padding: 300px 0;
   }
   aside.cta-quote span.quote {
-    font-size: 40px;
-    line-height: 42px;
+    font-size: 44px;
+    line-height: 48px;
   }
 }
 @media (min-width: 1025px) {

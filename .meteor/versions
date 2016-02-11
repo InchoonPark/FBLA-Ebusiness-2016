@@ -7,6 +7,7 @@ aldeed:collection2-core@1.0.0
 aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
+aldeed:template-extension@3.4.3
 andrasph:clockpicker@0.0.2
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
@@ -37,6 +38,7 @@ email@1.0.8
 es5-shim@4.1.14
 facebook@1.2.2
 fortawesome:fontawesome@4.5.0
+gabrielengel:konecty-magnific-popup@0.9.9
 geojson-utils@1.0.4
 gquemart:meteor-reactive-fullcalendar@1.0.1
 hot-code-push@1.0.0
@@ -78,12 +80,14 @@ retry@1.0.4
 routepolicy@1.0.6
 service-configuration@1.0.5
 sha@1.0.4
+slam310:smooth-scroll@0.0.5
 softwarerero:accounts-t9n@1.1.7
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
 templating@1.1.5
 templating-tools@1.0.0
+timmyg:wow@1.0.1
 tomwasd:flow-router-seo@0.0.3
 tracker@1.0.9
 twbs:bootstrap@3.3.6
@@ -93,5 +97,8 @@ url@1.0.5
 useraccounts:bootstrap@1.13.1
 useraccounts:core@1.13.1
 useraccounts:flow-routing@1.13.1
+visudare:retina@0.0.5
+visudare:retinajs@1.0.0
+vodkabears:vide@0.5.0
 webapp@1.2.3
 webapp-hashing@1.0.5

@@ -17,3 +17,4 @@ AccountsTemplates.configureRoute('signUp', {
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
+

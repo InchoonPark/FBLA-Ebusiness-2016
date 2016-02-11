@@ -3,13 +3,9 @@ Template.Navbar.onRendered( function() {
 	header = document.querySelector( '.navbar-fixed-top' ),
 	didScroll = false,
 	changeHeaderOn = 200;
-	console.log('rendered');
 
 	function init() {
-		console.log("init running");
-		//$('window').on('scroll', function() {
 		window.addEventListener('scroll', function() {
-			console.log("scrolling!");
 			if( !didScroll ) {
 				didScroll = true;
 				setTimeout( scrollPage, 250 );
@@ -19,7 +15,6 @@ Template.Navbar.onRendered( function() {
 
 	function scrollPage() {
 		var sy = window.pageYOffset || docElem.scrollTop;
-		console.log("scroll running");
 		if ( sy >= changeHeaderOn ) {
 			$('#js-top-nav').removeClass('navbar-expanded');
 		}
@@ -30,5 +25,4 @@ Template.Navbar.onRendered( function() {
 	}
 
 	init();
-
 });
