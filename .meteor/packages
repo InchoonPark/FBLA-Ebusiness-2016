@@ -14,22 +14,9 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 twbs:bootstrap
-kadira:flow-router
-kadira:blaze-layout
-gquemart:meteor-reactive-fullcalendar
-matb33:collection-hooks
-useraccounts:bootstrap
-accounts-password
-accounts-facebook
-useraccounts:flow-routing
-andrasph:clockpicker
-aldeed:simple-schema
-aldeed:collection2
-tomwasd:flow-router-seo
 fortawesome:fontawesome
-natestrauser:animate-css
-gabrielengel:konecty-magnific-popup
-slam310:smooth-scroll
-vodkabears:vide
-timmyg:wow
-visudare:retina
+thegoldencandle:accounts
+thegoldencandle:events
+thegoldencandle:landing
+thegoldencandle:static
+thegoldencandle:main

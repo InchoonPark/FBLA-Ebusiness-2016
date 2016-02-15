@@ -1,0 +1,107 @@
+input.form-control {
+  border-radius: 0 !important;
+}
+input.form-control:focus {
+  border-color: #ffc153;
+  box-shadow: none;
+}
+.btn,
+.input-group-btn {
+  border-radius: 0 !important;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: #ffc153;
+  border-color: #ffc153;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #ffb839;
+  border-color: #ffb42f;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #ffc153;
+  border-color: #ffc153;
+}
+.btn-primary .badge {
+  color: #ffc153;
+  background-color: #ffffff;
+}
+
+.btn-outline-light {
+  color: white;
+  border: 1px solid white;
+  background: transparent;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+  color: #ffc153;
+  background: white;
+  outline: none;
+}
+.btn-outline-dark {
+  color: #222222;
+  border: 1px solid #222222;
+  background: transparent;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.btn-outline-dark:hover,
+.btn-outline-dark:focus {
+  color: white;
+  background: #ffc153;
+  border-color: #ffc153;
+  outline: none;
+}
+.btn {
+  border-radius: 0;
+  padding: 12px 18px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.btn:focus,
+.btn:active,
+.btn.active {
+  outline: none;
+}
+.btn-center {
+  margin: 0 auto;
+}

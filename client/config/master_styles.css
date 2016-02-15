@@ -1,11 +1,8 @@
 /* master layout styles */
 .tgc-container {
-  margin-top: 81px;
+  margin-top: 90px;
 }
 /* utility classes */
-.text-center {
-  text-align: center !important;
-}
 .modal-img {
   width: 150px;
   margin-left: auto;
