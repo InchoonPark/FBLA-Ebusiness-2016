@@ -26,3 +26,12 @@ Template.LandingNavbar.onRendered( function() {
 
 	init();
 });
+
+Template.LandingNavbar.events({
+	"click [data-action=page-scroll]"(event) {
+		event.preventDefault();
+		$('html, body').stop().animate({
+				scrollTop: 0
+		}, 1250, 'easeInOutExpo');
+	}
+});

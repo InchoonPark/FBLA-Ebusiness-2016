@@ -8,7 +8,6 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('templating', 'client');
   api.use('gabrielengel:konecty-magnific-popup@0.9.9', 'client');
-  api.addFiles('gallery.css', 'client');
   api.addFiles('gallery.html', 'client');
   api.addFiles('gallery.js', 'client');
 });

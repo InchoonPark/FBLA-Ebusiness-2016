@@ -12,10 +12,12 @@ Package.onUse(function(api) {
   api.use('kadira:flow-router@2.10.1', 'client');
   api.use('kadira:blaze-layout@2.3.0', 'client');
   api.use('okgrow:router-autoscroll@0.1.6', 'client');
-  api.addFiles('config/vitality-yellow.css', 'client');
+  api.addFiles('config/main.css', 'client');
+  api.addFiles('config/toastr.js', 'client');
   api.addFiles('layouts/dashboard_layout.html', 'client');
   api.addFiles('layouts/master_layout.html', 'client');
   api.addFiles('navs/dashboard_navbar.html', 'client');
+  api.addFiles('navs/footer.css', 'client');
   api.addFiles('navs/footer.html', 'client');
   api.addFiles('navs/landing_navbar.html', 'client');
   api.addFiles('navs/landing_navbar.js', 'client');

@@ -51,6 +51,7 @@
   margin: auto 0 !important;
   top: 0;
   bottom: 0;
+  opacity: 0.75 !important;
   background-color: #ffc153 !important;
   color: white !important;
   -webkit-transition: all 0.5s;

@@ -22,7 +22,9 @@ Meteor.methods({
     } else {
       throw new Meteor.Error('package-invalid', 'The package you requested was invalid. Please try again!');
     }
-    
+
+    Events.insert({});
+
     const charge = {
       amount: eventData.cost,
       currency: 'usd',

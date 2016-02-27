@@ -26,7 +26,10 @@ Template.Gallery.helpers({
 { _id: 9, type: "lighting" },
 { _id: 10, type: "lightning" },
 { _id: 11, type: "lighting" },
-{ _id: 8, type: "decor" }
+{ _id: 8, type: "decor" },
+{ _id: 18, type: "catering" },
+{ _id: 19, type: "decor" },
+{ _id: 20, type: "lighting" }
     ];
   }
 });

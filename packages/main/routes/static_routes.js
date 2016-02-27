@@ -53,3 +53,10 @@ FlowRouter.route('/policies', {
   },
   name: 'policies'
 });
+
+FlowRouter.route('/faqs', {
+  action: function() {
+    BlazeLayout.render('MasterLayout', { main: 'Faqs' });
+  },
+  name: 'faqs'
+});

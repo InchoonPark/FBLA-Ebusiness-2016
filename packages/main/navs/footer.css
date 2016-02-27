@@ -1,0 +1,32 @@
+footer.footer {
+  color: white;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  padding: 50px 0 20px;
+}
+footer.footer a {
+  color: white;
+}
+footer.footer a:hover {
+  color: white;
+}
+footer.footer p {
+  font-size: 22px;
+}
+footer.footer .contact-details {
+  margin: 75px 0;
+}
+footer.footer .social {
+  margin-bottom: 75px;
+}
+footer.footer .copyright p.small {
+  font-size: 14px;
+}
+@media (min-width: 1025px) {
+  footer.footer {
+    background-attachment: fixed;
+  }
+}

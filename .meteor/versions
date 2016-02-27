@@ -7,6 +7,7 @@ andrasph:clockpicker@0.0.2
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
+bambattajb:sticky@1.1.1
 base64@1.0.4
 binary-heap@1.0.4
 blaze@2.1.3
@@ -94,6 +95,7 @@ templating@1.1.5
 templating-tools@1.0.0
 thegoldencandle:accounts@0.0.1
 thegoldencandle:events@0.0.1
+thegoldencandle:faqs@0.0.1
 thegoldencandle:gallery@0.0.1
 thegoldencandle:landing@0.0.1
 thegoldencandle:main@0.0.1
