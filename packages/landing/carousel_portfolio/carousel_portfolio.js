@@ -1,4 +1,7 @@
-Template.CarouselPortfolio.onRendered(function() {
+Template.CarouselPortfolio.onRendered(() => {
+	const screenHeight = rwindow.innerHeight();
+	$('#portfolio-scroll').css('margin-top', screenHeight + 'px');
+
 	$(".portfolio-carousel").owlCarousel({
 		singleItem: true,
 		navigation: true,

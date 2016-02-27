@@ -1,38 +1,35 @@
+const Stripe = StripeAPI(Meteor.settings.StripeTestSecretKey);
+const handleCharge = Meteor.wrapAsync(Stripe.charges.create, Stripe.charges);
+
 Meteor.methods({
-  "registerEvent": function(eventData, stripeToken) {
-    console.log(eventData);
+  registerEvent(eventData, email, stripeToken) {
+    /*check(eventData, {
+      name: String,
+      date: Date,
+      participantNum: Number,
+      startingTime: String,
+      endingTime: String,
+      packages: String
+    });*/
+    check(stripeToken, String);
 
-    /*check(eventData.name, String);
-    //check(eventData.date, Date);
-    check(eventData.participantNum, Number);
-    check(eventData.startingTime, String);
-    check(eventData.endingTime, String);
-    check(eventData.packages, String);
-    check(stripeToken, String);*/
-
-
-    switch(eventData.packages) {
-      case 'basic':
-        eventData.cost = Math.round(eventData.participantNum / 10) * 160;
-      case 'plus':
-        eventData.cost = Math.round(eventData.participantNum / 10) * 180;
-      case 'premium':
-        eventData.cost = Math.round(eventData.participantNum / 10) * 240;
+    if(eventData.packages === 'basic') {
+      eventData.cost = Math.ceil(eventData.participantNum / 10) * 10 * 16;
+    } else if(eventData.packages === 'plus') {
+      eventData.cost = Math.ceil(eventData.participantNum / 10) * 180;
+    } else if(eventData.packages === 'premium') {
+      eventData.cost = Math.ceil(eventData.participantNum / 10) * 240;
+    } else {
+      throw new Meteor.Error('package-invalid', 'The package you requested was invalid. Please try again!');
     }
-
-    console.log(eventData.cost);
-
-    const Stripe = StripeAPI(Meteor.settings.StripeTestSecretKey);
-    /*Stripe.charges.create({
+    
+    const charge = {
       amount: eventData.cost,
       currency: 'usd',
       source: stripeToken
-    }, function(error, charge) {
-      if(error) {
-        throw new Meteor.Error(error);
-      } else {
-        Events.insert(eventData);
-      }
-    });*/
+    }
+
+    const payment = handleCharge(charge);
+    return payment;
   }
 });

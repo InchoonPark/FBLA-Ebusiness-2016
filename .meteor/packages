@@ -16,7 +16,10 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 twbs:bootstrap
 fortawesome:fontawesome
 thegoldencandle:accounts
+thegoldencandle:gallery
 thegoldencandle:events
 thegoldencandle:landing
 thegoldencandle:static
 thegoldencandle:main
+force-ssl
+wizonesolutions:canonical

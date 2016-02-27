@@ -1,6 +1,6 @@
 FlowRouter.route('/', {
   action: function() {
-    BlazeLayout.render('Home');
+    BlazeLayout.render('Landing');
   },
   name: 'home'
 });
@@ -14,7 +14,7 @@ FlowRouter.route('/about', {
 
 FlowRouter.route('/gallery', {
   action: function() {
-    BlazeLayout.render('MasterLayout', { main: 'Gallery '});
+    BlazeLayout.render('MasterLayout', { main: 'Gallery' });
   },
   name: 'gallery'
 });
@@ -31,4 +31,25 @@ FlowRouter.route('/contact', {
     BlazeLayout.render('MasterLayout', { main: 'Contact' });
   },
   name: 'contact'
+});
+
+FlowRouter.route('/mission-statement', {
+  action: function() {
+    BlazeLayout.render('MasterLayout', { main: 'MissionStatement' });
+  },
+  name: 'mission.statement'
+});
+
+FlowRouter.route('/guarantees', {
+  action: function() {
+    BlazeLayout.render('MasterLayout', { main: 'Guarantees' });
+  },
+  name: 'guarantees'
+});
+
+FlowRouter.route('/policies', {
+  action: function() {
+    BlazeLayout.render('MasterLayout', { main: 'Policies' });
+  },
+  name: 'policies'
 });

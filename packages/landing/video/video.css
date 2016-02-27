@@ -1,5 +1,4 @@
 header {
-  /**position: relative;*/
   display: block;
   height: auto;
   width: auto;
@@ -18,12 +17,11 @@ header .intro-content {
   position: relative;
 }
 header .brand-name {
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
   font-size: 55px;
   line-height: 55px;
-  text-transform: uppercase;
   font-weight: 900;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 header .brand-name-subtext {
   font-size: 20px;
@@ -64,7 +62,6 @@ header .scroll-down .btn:hover {
     height: 100%;
     width: 100%;
     padding: 0;
-    background-attachment: scroll;
   }
   header .intro-content {
     color: white;
@@ -87,22 +84,18 @@ header .scroll-down .btn:hover {
     line-height: 30px;
   }
   header img {
-    max-width: 300px;
-    max-height: 300px;
+    width: 300px;
+    height: 300px;
   }
 }
-@media (min-width: 1025px) {
-  header {
-    background-attachment: fixed;
-  }
+header.video {
+  position: static !important;
+  z-index: -100;
 }
 header.video .overlay {
-  position: absolute;
   height: 100%;
   width: 100%;
-  background: #000;
-  z-index: 998;
-  opacity: 1;
+  z-index: 100;
 }
 header.video .intro-content {
   z-index: 999;
@@ -111,13 +104,7 @@ header.video .scroll-down {
   z-index: 999;
 }
 @media (min-width: 768px) {
-  header.video .overlay {
-    opacity: 1;
+  header.video {
+    opacity: 0.9;
   }
-}
-div.vide{
-  position:static;
-}
-header.video .img-video {
-  height: 200px;
 }

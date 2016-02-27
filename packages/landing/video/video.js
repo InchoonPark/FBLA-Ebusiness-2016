@@ -1,15 +1,12 @@
 Template.Video.events({
-	"click a.page-scroll": function(event){
-		var $anchor = $(this);
-		$('.body').stop().animate({
-			scrollTop: ($($anchor.attr('href')).offset().top - 50)
-		}, 1250, 'easeInOutExpo');
+	"click [data-action=page-scroll]"(event) {
 		event.preventDefault();
+		$('html, body').stop().animate({
+				scrollTop: ($('#portfolio-scroll').offset().top - 50)
+		}, 1250, 'easeInOutExpo');
 	}
 });
 
-Template.Video.onRendered(function() {
-	this.$('.overlay').vide('https://thegoldencandle.s3-us-west-1.amazonaws.com/assets/video/landing-video.mp4', {
-		className: 'vide',
-	});
+Template.Video.onRendered(() => {
+	$(".video").vide('https://d2713zaslmgu0p.cloudfront.net/assets/video/landing-video.mp4');
 });

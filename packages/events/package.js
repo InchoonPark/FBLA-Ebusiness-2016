@@ -10,6 +10,7 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('templating', 'client');
   api.use('check', 'server');
+  api.use('andrasph:clockpicker@0.0.2', 'client');
   api.use('kadira:flow-router@2.10.1', 'client');
   api.use('jeffpatzer:jquery-payment@0.0.5', 'client');
   api.use('gquemart:meteor-reactive-fullcalendar@1.0.1', 'client');

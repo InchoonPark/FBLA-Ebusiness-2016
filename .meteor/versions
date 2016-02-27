@@ -1,7 +1,9 @@
 accounts-base@1.2.2
 accounts-facebook@1.0.6
+accounts-google@1.0.6
 accounts-oauth@1.1.8
 accounts-password@1.1.4
+andrasph:clockpicker@0.0.2
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -32,9 +34,12 @@ ejson@1.0.7
 email@1.0.8
 es5-shim@4.1.14
 facebook@1.2.2
+force-ssl@1.0.6
 fortawesome:fontawesome@4.5.0
 gabrielengel:konecty-magnific-popup@0.9.9
+gadicohen:reactive-window@1.0.6
 geojson-utils@1.0.4
+google@1.1.7
 gquemart:meteor-reactive-fullcalendar@1.0.1
 hot-code-push@1.0.0
 html-tools@1.0.5
@@ -56,7 +61,8 @@ minifiers@1.1.7
 minimongo@1.0.10
 mongo@1.1.3
 mongo-id@1.0.1
-mrgalaxy:stripe@2.2.1
+mrgalaxy:stripe@2.2.2
+mrt:isolate-value@2.0.2
 mrt:jquery-easing@1.3.0
 mrt:jquery-ui@1.9.2
 mrt:moment@2.8.1
@@ -66,6 +72,7 @@ npm-mongo@1.4.39_1
 oauth@1.1.6
 oauth2@1.1.5
 observe-sequence@1.0.7
+okgrow:router-autoscroll@0.1.6
 ordered-dict@1.0.4
 promise@0.5.1
 rajit:bootstrap3-datepicker@1.5.1
@@ -87,6 +94,7 @@ templating@1.1.5
 templating-tools@1.0.0
 thegoldencandle:accounts@0.0.1
 thegoldencandle:events@0.0.1
+thegoldencandle:gallery@0.0.1
 thegoldencandle:landing@0.0.1
 thegoldencandle:main@0.0.1
 thegoldencandle:static@0.0.1
@@ -102,4 +110,5 @@ useraccounts:flow-routing@1.13.1
 vodkabears:vide@0.5.0
 webapp@1.2.3
 webapp-hashing@1.0.5
+wizonesolutions:canonical@0.0.5
 zimme:active-route@2.3.2

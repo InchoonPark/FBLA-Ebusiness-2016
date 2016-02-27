@@ -8,6 +8,7 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('jquery', 'client');
   api.use('templating', 'client');
+  api.use('gadicohen:reactive-window@1.0.6', 'client');
   api.use('dennispark:owl-carousel-1@0.0.1', 'client');
   api.use('gabrielengel:konecty-magnific-popup@0.9.9', 'client');
   api.use('iamkevingreen:mixitup@2.1.7', 'client');
@@ -17,10 +18,9 @@ Package.onUse(function(api) {
   api.use('timmyg:wow@1.0.1', 'client');
   api.use('vodkabears:vide@0.5.0', 'client');
   api.addFiles('libraries/acore.js', 'client');
+  api.addFiles('libraries/background.js', 'client');
   api.addFiles('libraries/transition.js', 'client');
-  api.addFiles('about_landing/about_landing.css', 'client');
-  api.addFiles('about_landing/about_landing.html', 'client');
-  api.addFiles('about_landing/about_landing.js', 'client');
+  api.addFiles('carousel_portfolio/carousel_portfolio.css', 'client');
   api.addFiles('carousel_portfolio/carousel_portfolio.html', 'client');
   api.addFiles('carousel_portfolio/carousel_portfolio.js', 'client');
   api.addFiles('no_js/pricing_boxes.html', 'client');
@@ -32,4 +32,5 @@ Package.onUse(function(api) {
   api.addFiles('video/video.html', 'client');
   api.addFiles('video/video.js', 'client');
   api.addFiles('landing.css', 'client');
+  api.addFiles('landing.html', 'client');
 });

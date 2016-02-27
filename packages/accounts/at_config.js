@@ -1,7 +1,9 @@
 AccountsTemplates.configure({
   defaultLayout: 'MasterLayout',
   defaultLayoutRegions: {},
+  showForgotPasswordLink: true,
   defaultContentRegion: 'main'
+
 });
 
 AccountsTemplates.configureRoute('signIn', {

@@ -1,28 +1,26 @@
-Template.Calendar.onRendered(function() {
-  this.subscribe("futureEvents");
+Template.Calendar.onCreated(() => {
+  let template = Template.instance();
+  template.subscribe("allEvents");
+  return Events.find();
 });
 
 Template.Calendar.helpers({
-  calendarOptions: {
-    hiddenDays: [ 0 ],
-    height: '500px',
-    slotDuration: '01:00:00',
-    minTime: '08:00:00',
-    maxTime: '19:00:00',
-    // Function providing events reactive computation for fullcalendar plugin
-    events: function(start, end, timezone, callback) {
-      var eventCursor = Events.find();
-      var events = eventCursor.fetch();
-      callback(events);
-    },
-    addedClasses: "calendar",
-
-    autoruns: [
-      function () {
-        console.log("user defined autorun function executed!");
-      }
-    ]
-  },
+  calendarOptions() {
+    return {
+      hiddenDays: [ 0 ],
+      width: '300px',
+      slotDuration: '01:00:00',
+      minTime: '08:00:00',
+      maxTime: '19:00:00',
+      // Function providing events reactive computation for fullcalendar plugin
+      events: function(start, end, timezone, callback) {
+        var eventCursor = Events.find();
+        var events = eventCursor.fetch();
+        console.log(events);
+        callback(events);
+      },
+    }
+  }
 });
 
 Template.Calendar.events({
