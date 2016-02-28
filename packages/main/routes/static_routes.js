@@ -60,3 +60,21 @@ FlowRouter.route('/faqs', {
   },
   name: 'faqs'
 });
+
+FlowRouter.route('/logout', {
+  action: function() {
+    if(Meteor.userId()) {
+      Meteor.logout(function(error) {
+        if(error) {
+          toastr.error(error.reason);
+        } else {
+          toastr.success('Successfully logged out!');
+        }
+        FlowRouter.go('home');
+      });
+    } else {
+      toastr.error('You must have an account to log out!');
+      FlowRouter.go('home');
+    }
+  }
+});
