@@ -4,6 +4,9 @@ Template.Calendar.onCreated(() => {
   return Events.find();
 });
 
+Template.Calendar.onRendered(function () {
+});
+
 Template.Calendar.helpers({
   calendarOptions() {
     return {

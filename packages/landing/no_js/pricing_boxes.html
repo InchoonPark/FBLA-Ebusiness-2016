@@ -1,17 +1,21 @@
 <template name="PricingBoxes">
 	<section class="bg-gray">
-<div class="container">
+		<div class="container">
 			<div class="row text-center">
 				<div class="col-lg-8 col-lg-offset-2">
 					<h2>Packages</h2>
 					<hr class="colored">
-					<p>We offer carefully selected packages in order to simplify your planning process. Select from one of our three most popular packages below. To customize specific parts of your package, contact our staff. The prices are calculated per ten people. These products are high quality and low cost. We will meet every need and cater to all of your requests.</p>
+					<p>We offer carefully selected packages in order to simplify your planning process. Simply select from one of our three most popular packages below. To customize specific parts of your package, you can contact our staff. The prices are calculated per ten people. These products are high quality and low cost. We will meet every need and cater to all of your requests.</p>
+					{{#if currentUser}}
+					{{else}}
+					<p>Sign in to add these packages!</p>
+					{{/if}}
 				</div>
 			</div>
 		</div>
 	</section>
 	<section id="pricing" class="pricing" style="background-image: url('https://d2713zaslmgu0p.cloudfront.net/assets/img/pricing.jpg')">
-			<div class="container">
+		<div class="container">
 			<div class="row content-row">
 				<div class="col-md-4">
 					<div class="pricing-item featured-first">
@@ -26,7 +30,12 @@
 							<li class="list-group-item">Beverages</li>
 							<li class="list-group-item">Customized Decoration</li>
 						</ul>
-						<a href="#" class="btn btn-outline-dark">Add to Order</a>
+						{{#if currentUser}}
+						<a href="/register-event" class="btn btn-outline-dark link-to-register">Add to Order</a>
+						{{else}}
+						<a href="/register-event" class="btn btn-outline-dark disabled link-to-register">Add to Order</a>
+						{{/if}}
+
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -42,7 +51,11 @@
 							<li class="list-group-item">Beverages</li>
 							<li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
 						</ul>
-						<a href="#" class="btn btn-outline-dark">Add to Order</a>
+						{{#if currentUser}}
+						<a href="/register-event" class="btn btn-outline-dark link-to-register">Add to Order</a>
+						{{else}}
+						<a href="/register-event" class="btn btn-outline-dark disabled link-to-register">Add to Order</a>
+						{{/if}}
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -58,7 +71,11 @@
 							<li class="list-group-item">Cake or Pie and Beverages</li>
 							<li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
 						</ul>
-						<a href="#" class="btn btn-outline-dark">Add to Order</a>
+						{{#if currentUser}}
+						<a href="/register-event" class="btn btn-outline-dark link-to-register">Add to Order</a>
+						{{else}}
+						<a href="/register-event" class="btn btn-outline-dark disabled link-to-register">Add to Order</a>
+						{{/if}}
 					</div>
 				</div>
 			</div>

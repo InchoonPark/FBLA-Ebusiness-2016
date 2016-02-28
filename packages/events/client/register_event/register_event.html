@@ -1,158 +1,174 @@
 <template name="RegisterEvent">
   <div class="container">
-  <h1 class="text-center">Register Event</h1>
-  <hr class="colored">
-  <form role="form" style="margin-bottom: 50px">
-    <div class="form-group">
-      <label>Name of Event</label>
-      <input type="text" class="form-control" name="event-name">
-    </div>
-    <div class="form-group">
-      <label>Number of Participants</label>
-      <input type="number" class="form-control" name="participant-num" min="10" max="100">
-    </div>
-    <div class="form-group">
-      <div class="row">
-      <div class="col-md-4">
-        <label>Date</label>
-        <input type="text" class="datepicker form-control" name="date">
-      </div>
-      <div class="col-md-4">
-        <div class="clockpicker">
-          <label>Starting Time</label>
-          <input type="text" class="form-control" name="starting-time" value="09:30">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="clockpicker">
-          <label>Starting Time</label>
-          <input type="text" class="form-control" name="ending-time" value="09:30">
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="form-group">
-      <label>Packages</label>
-			<div class="row">
-				<div class="col-md-4 text-center">
-					<div class="pricing-item featured-first">
-						<h3>Basic</h3>
-						<hr class="colored">
-						<ul class="list-group">
-              <li class="list-group-item">$160 / 10 people</li>
-							<li class="list-group-item">3 Course Meal</li>
-							<li class="list-group-item">Choice of Salad</li>
-							<li class="list-group-item">Steak and Potatoes</li>
-							<li class="list-group-item">Cake</li>
-							<li class="list-group-item">Beverages</li>
-							<li class="list-group-item">Customized Decoration</li>
-						</ul>
-						<label for="basic" class="btn btn-outline-dark center-btn">Add to Order</label>
-            <input type="radio" name="packages" value="basic" id="basic" class="hidden">
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="pricing-item featured">
-						<h3>Plus</h3>
-						<hr class="colored">
-						<ul class="list-group">
-              <li class="list-group-item">$180 / 10 people</li>
-							<li class="list-group-item">3 Course Meal</li>
-							<li class="list-group-item">Choice of Salad</li>
-							<li class="list-group-item">Steak and Potatoes</li>
-							<li class="list-group-item">Cake</li>
-							<li class="list-group-item">Beverages</li>
-							<li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
-						</ul>
-            <label for="plus" class="btn btn-outline-dark center-btn">Add to Order</label>
-            <input type="radio" name="packages" value="plus" id="plus" class="hidden">
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="pricing-item featured-last">
-						<h3>Premium</h3>
-						<hr class="colored">
-						<ul class="list-group">
-              <li class="list-group-item">$240 / 10 people</li>
-							<li class="list-group-item"><strong>5</strong> Course Meal</li>
-							<li class="list-group-item">Choice of <strong>Salads</strong> and <strong>Soup</strong></li>
-							<li class="list-group-item">Shrimp Cocktail</li>
-							<li class="list-group-item">Steak and Potatoes</li>
-							<li class="list-group-item">Cake or Pie and Beverages</li>
-							<li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
-						</ul>
-            <label for="premium" class="btn btn-outline-dark btn-center">Add to Order</label>
-            <input type="radio" name="packages" value="premium" id="premium" class="hidden">
-					</div>
-				</div>
-			</div>
-    </div>
-    {{#unless currentUser.stripeToken}}
+    <h1 class="text-center">Register Event</h1>
     <hr class="colored">
-    <p class="help-block">You can use 4242 4242 4242 4242 for the credit card number and random information for other fields to make a purchase.</p>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="text" class="form-control" name="email" placeholder="Email">
-    </div>
-    <div class="form-group">
-      <label>Name on Card</label>
-      <input type="text" class="form-control" name="card-holder-name" placeholder="Card Holder's Name">
-    </div>
-    <div class="form-group">
-      <label>Card Number</label>
-      <input type="text" class="form-control" name="card-number" placeholder="Debit/Credit Card Number">
-    </div>
-    <div class="form-group">
-      <label>Expiration Date</label>
+    <form role="form" style="margin-bottom: 50px">
       <div class="row">
-        <div class="col-md-6">
-          <select class="form-control" name="expiry-month">
-            <option>Month</option>
-            <option value="01">Jan (01)</option>
-            <option value="02">Feb (02)</option>
-            <option value="03">Mar (03)</option>
-            <option value="04">Apr (04)</option>
-            <option value="05">May (05)</option>
-            <option value="06">June (06)</option>
-            <option value="07">July (07)</option>
-            <option value="08">Aug (08)</option>
-            <option value="09">Sep (09)</option>
-            <option value="10">Oct (10)</option>
-            <option value="11">Nov (11)</option>
-            <option value="12">Dec (12)</option>
-          </select>
+        <div class="col-md-9">
+          <div class="form-group">
+            <label>Name of Event</label>
+            <input type="text" class="form-control" name="event-name">
+          </div>
+          <div class="form-group">
+            <label>Number of Participants</label>
+            <input type="number" class="form-control" name="participant-num" min="10" max="200" id="participantNumber">
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Date</label>
+                <input type="text" class="datepicker form-control" name="date">
+              </div>
+              <div class="col-md-4">
+                <div class="clockpicker">
+                  <label>Starting Time</label>
+                  <input type="text" class="form-control" name="starting-time" value="09:30">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="clockpicker">
+                  <label>Ending Time</label>
+                  <input type="text" class="form-control" name="ending-time" value="10:30">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Packages</label>
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <div class="pricing-item featured-first">
+                  <h3>Basic</h3>
+                  <hr class="colored">
+                  <ul class="list-group">
+                    <li class="list-group-item">$160 / 10 people</li>
+                    <li class="list-group-item">3 Course Meal</li>
+                    <li class="list-group-item">Choice of Salad</li>
+                    <li class="list-group-item">Steak and Potatoes</li>
+                    <li class="list-group-item">Cake</li>
+                    <li class="list-group-item">Beverages</li>
+                    <li class="list-group-item">Customized Decoration of choice</li>
+                  </ul>
+                  <label for="basic" class="btn btn-outline-dark center-btn add-to-order" id="pkg-1">Add to Order</label>
+                  <input type="radio" name="packages" value="basic" id="basic" class="hidden">
+                </div>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="pricing-item featured">
+                  <h3>Plus</h3>
+                  <hr class="colored">
+                  <ul class="list-group">
+                    <li class="list-group-item">$180 / 10 people</li>
+                    <li class="list-group-item">3 Course Meal</li>
+                    <li class="list-group-item">Choice of Salad</li>
+                    <li class="list-group-item">Steak and Potatoes</li>
+                    <li class="list-group-item">Cake</li>
+                    <li class="list-group-item">Beverages</li>
+                    <li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
+                  </ul>
+                  <label for="plus" class="btn btn-outline-dark center-btn add-to-order" id="pkg-2">Add to Order</label>
+                  <input type="radio" name="packages" value="plus" id="plus" class="hidden">
+                </div>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="pricing-item featured-last">
+                  <h3>Premium</h3>
+                  <hr class="colored">
+                  <ul class="list-group">
+                    <li class="list-group-item">$240 / 10 people</li>
+                    <li class="list-group-item"><strong>5</strong> Course Meal</li>
+                    <li class="list-group-item">Choice of <strong>Salads</strong> and <strong>Soup</strong></li>
+                    <li class="list-group-item">Shrimp Cocktail</li>
+                    <li class="list-group-item">Steak and Potatoes</li>
+                    <li class="list-group-item">Cake or Pie and Beverages</li>
+                    <li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
+                  </ul>
+                  <label for="premium" class="btn btn-outline-dark btn-center add-to-order" id="pkg-3">Add to Order</label>
+                  <input type="radio" name="packages" value="premium" id="premium" class="hidden">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {{#unless currentUser.stripeToken}}
+          <hr class="colored">
+          <br>
+          <p class="help-block">Use 4242 4242 4242 4242 for the card number and random information for other fields to make a sample purchase.</p>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label>Name on Card</label>
+            <input type="text" class="form-control" name="card-holder-name" placeholder="Card Holder's Name">
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" class="form-control" name="card-number" placeholder="Debit/Credit Card Number">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <div class="row">
+              <div class="col-md-6">
+                <select class="form-control" name="expiry-month">
+                  <option>Month</option>
+                  <option value="01">Jan (01)</option>
+                  <option value="02">Feb (02)</option>
+                  <option value="03">Mar (03)</option>
+                  <option value="04">Apr (04)</option>
+                  <option value="05">May (05)</option>
+                  <option value="06">June (06)</option>
+                  <option value="07">July (07)</option>
+                  <option value="08">Aug (08)</option>
+                  <option value="09">Sep (09)</option>
+                  <option value="10">Oct (10)</option>
+                  <option value="11">Nov (11)</option>
+                  <option value="12">Dec (12)</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <select class="form-control" name="expiry-year">
+                  <option value="16">2016</option>
+                  <option value="17">2017</option>
+                  <option value="18">2018</option>
+                  <option value="19">2019</option>
+                  <option value="20">2020</option>
+                  <option value="21">2021</option>
+                  <option value="22">2022</option>
+                  <option value="23">2023</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Card CVC</label>
+            <input type="text" class="form-control" name="cvc" placeholder="Security Code">
+          </div>
+          {{#if currentUser}}
+          <div class="form-group">
+            <div class="checkbox">
+              <label><input type="checkbox" name="save-info">
+                Save credit card information for later use?
+              </label>
+            </div>
+          </div>
+          {{/if}}
+          {{/unless}}
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+          </div>
         </div>
-        <div class="col-md-6">
-          <select class="form-control" name="expiry-year">
-            <option value="16">2016</option>
-            <option value="17">2017</option>
-            <option value="18">2018</option>
-            <option value="19">2019</option>
-            <option value="20">2020</option>
-            <option value="21">2021</option>
-            <option value="22">2022</option>
-            <option value="23">2023</option>
-          </select>
+        <div class="col-md-3">
+          <div id="prices">
+            <hr class="colored">
+            <h3>Subtotal: $<span>{{totalCost}}</span></h3>
+            <h3>Tax: $<span>{{taxCost}}</span></h3>
+            <h3>Total Cost: $<span>{{finalCost}}</span></h3>
+            <hr class="colored">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label>Card CVC</label>
-        <input type="text" class="form-control" name="cvc" placeholder="Security Code">
-    </div>
-    {{#if currentUser}}
-    <div class="form-group">
-      <div class="checkbox">
-        <label><input type="checkbox" name="save-info">
-          Save credit card information for later use?
-        </label>
-      </div>
-    </div>
-    {{/if}}
-    {{/unless}}
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary btn-block">Submit</button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 </template>

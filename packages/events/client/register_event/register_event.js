@@ -1,3 +1,8 @@
+Template.RegisterEvent.onCreated(function() {
+  this.currentPeople = new ReactiveVar(0);
+  this.currentPackage = new ReactiveVar(0);
+});
+
 Template.RegisterEvent.onRendered(() => {
   //initializes datepicker input
   $('.datepicker').datepicker({startDate: '3d', orientation: 'bottom auto'});
@@ -8,7 +13,13 @@ Template.RegisterEvent.onRendered(() => {
   //formats card number and cvc inputs live with Stripe jquery.payment library
   $('input[name=card-number]').payment('formatCardNumber');
   $('input[name=cvc]').payment('formatCardCVC');
+
+  $("#prices").sticky({
+    topSpacing: 90,
+    bottomSpacing: 600
+  });
 });
+
 
 Template.RegisterEvent.events({
   "submit form": function(event) {
@@ -20,6 +31,30 @@ Template.RegisterEvent.events({
     const startingTime = $('input[name=starting-time]').val();
     const endingTime = $('input[name=ending-time]').val();
     const packages = $('input[name=packages]').val();
+
+    if(!name){
+      toastr.error('Please enter an event name.');
+      return;
+    }
+    if(!date){
+      toastr.error('Please enter the date of your event.');
+      return;
+    }
+    if(!participantNum){
+      toastr.error('Please specify number of participants.');
+      return;
+    }
+    if(!startingTime){
+      toastr.error('Please specify the beginning time of your event');
+      return;
+    }
+    if(!endingTime){
+      toastr.error('Please specify the ending time of your event');
+      return;
+    }
+
+
+
     const eventData = { name, date, participantNum, startingTime, endingTime, packages };
 
     //if user already has Stripe token
@@ -27,9 +62,8 @@ Template.RegisterEvent.events({
       Meteor.call('registerEvent', eventData, 'dennis092899@gmail.com', Meteor.user().stripeToken, function(error, result) {
         if(error) {
           toastr.error(error.reason);
-        } else if(result) {
-          toastr.error('Sorry but an unexpected error occurred. Please try again!');
         } else {
+          console.log("success");
           toastr.success('Your event has been successfully created! Please check your email to confirm event details!');
         }
       });
@@ -80,5 +114,47 @@ Template.RegisterEvent.events({
         }
       });
     });
+  },
+  'click #pkg-1':function(event, template) {
+    template.currentPackage.set(160);
+  },
+  'click #pkg-2':function(event, template) {
+    template.currentPackage.set(180);
+  },
+  'click #pkg-3':function(event, template) {
+    template.currentPackage.set(240);
+  },
+  'blur #participantNumber': function(event, template) {
+    template.currentPeople.set(event.target.value);
+  },
+  'click .add-to-order': function(event){
+    $(".add-to-order").removeClass('active');
+    $(event.target).addClass('active');
   }
 });
+
+Template.RegisterEvent.helpers({
+  'totalCost': function(){
+    var packagePrice = Number(Template.instance().currentPackage.get());
+    var peopleCount = Number(Template.instance().currentPeople.get());
+    var roundedCount = Math.ceil(peopleCount / 10);
+
+    return packagePrice * roundedCount;
+  },
+  'taxCost': function() {
+    var packagePrice = Number(Template.instance().currentPackage.get());
+    var peopleCount = Number(Template.instance().currentPeople.get());
+    var roundedCount = Math.ceil(peopleCount / 10);
+    var tax = packagePrice * roundedCount * .10;
+    return tax;
+  },
+  'finalCost': function() {
+    var packagePrice = Number(Template.instance().currentPackage.get());
+    var peopleCount = Number(Template.instance().currentPeople.get());
+    var roundedCount = Math.ceil(peopleCount / 10);
+    var finalCost = packagePrice * roundedCount * 1.10;
+    finalCost = finalCost.toFixed(0);
+    return finalCost;
+  }
+
+})
