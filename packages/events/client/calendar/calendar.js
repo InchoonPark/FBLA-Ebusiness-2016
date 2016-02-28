@@ -15,11 +15,11 @@ Template.Calendar.helpers({
       slotDuration: '01:00:00',
       minTime: '08:00:00',
       maxTime: '19:00:00',
+      eventColor: '#ffc153',
       // Function providing events reactive computation for fullcalendar plugin
       events: function(start, end, timezone, callback) {
         var eventCursor = Events.find();
         var events = eventCursor.fetch();
-        console.log(events);
         callback(events);
       },
     }

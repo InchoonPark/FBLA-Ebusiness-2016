@@ -31,5 +31,6 @@ Package.onUse(function(api) {
   api.addFiles('lib/events.js', both);
   api.addFiles('server/methods.js', 'server');
   api.addFiles('server/pubs.js', 'server');
+  api.addFiles('server/fixtures.js', 'server');
   api.export('Events', both);
 });

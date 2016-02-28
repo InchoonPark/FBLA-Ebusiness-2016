@@ -11,7 +11,7 @@
           </div>
           <div class="form-group">
             <label>Number of Participants</label>
-            <input type="number" class="form-control" name="participant-num" min="10" max="200" id="participantNumber">
+            <input type="text" class="form-control" name="participant-num" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
           </div>
           <div class="form-group">
             <div class="row">
@@ -49,7 +49,7 @@
                     <li class="list-group-item">Beverages</li>
                     <li class="list-group-item">Customized Decoration of choice</li>
                   </ul>
-                  <label for="basic" class="btn btn-outline-dark center-btn add-to-order" id="pkg-1">Add to Order</label>
+                  <label for="basic" class="btn btn-outline-dark center-btn add-to-order">Add to Order</label>
                   <input type="radio" name="packages" value="basic" id="basic" class="hidden">
                 </div>
               </div>
@@ -66,7 +66,7 @@
                     <li class="list-group-item">Beverages</li>
                     <li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
                   </ul>
-                  <label for="plus" class="btn btn-outline-dark center-btn add-to-order" id="pkg-2">Add to Order</label>
+                  <label for="plus" class="btn btn-outline-dark center-btn add-to-order">Add to Order</label>
                   <input type="radio" name="packages" value="plus" id="plus" class="hidden">
                 </div>
               </div>
@@ -83,7 +83,7 @@
                     <li class="list-group-item">Cake or Pie and Beverages</li>
                     <li class="list-group-item">Customized <strong>Decor</strong> and <strong>Photography</strong></li>
                   </ul>
-                  <label for="premium" class="btn btn-outline-dark btn-center add-to-order" id="pkg-3">Add to Order</label>
+                  <label for="premium" class="btn btn-outline-dark btn-center add-to-order">Add to Order</label>
                   <input type="radio" name="packages" value="premium" id="premium" class="hidden">
                 </div>
               </div>

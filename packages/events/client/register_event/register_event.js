@@ -27,10 +27,10 @@ Template.RegisterEvent.events({
     //get event related input
     const name = $('input[name=event-name]').val();
     const date = $('input[name=date]').val();
-    const participantNum = $('input[name=participant-num]').val();
+    const participantNum = Number($('input[name=participant-num]').val());
     const startingTime = $('input[name=starting-time]').val();
     const endingTime = $('input[name=ending-time]').val();
-    const packages = $('input[name=packages]').val();
+    const packages = $('label.active').attr('for');
 
     if(!name){
       toastr.error('Please enter an event name.');
@@ -53,12 +53,26 @@ Template.RegisterEvent.events({
       return;
     }
 
+    var startTime = "T" + startingTime + ":00";
+    var endTime = "T" + endingTime + ":00";
 
+    var eventMonth = date.substring(0,2);
+    var eventDay = date.substring(3,5);
+    var eventYear = date.substring(6);
+    var eventDate = eventYear + "-" + eventMonth + "-" + eventDay;
 
-    const eventData = { name, date, participantNum, startingTime, endingTime, packages };
+    var startTime = new Date(eventDate + startTime);
+    var endTime = new Date(eventDate + endTime);
+
+    if(startTime == "Invalid Date" || endTime == "Invalid Date"){
+      toastr.error('Please input a valid date and time.');
+      return;
+    }
+
+    const eventData = { name, participantNum, startTime, endTime, packages };
 
     //if user already has Stripe token
-    if(Meteor.user().stripeToken) {
+    if(Meteor.user() && Meteor.user().stripeToken) {
       Meteor.call('registerEvent', eventData, 'dennis092899@gmail.com', Meteor.user().stripeToken, function(error, result) {
         if(error) {
           toastr.error(error.reason);
@@ -107,30 +121,32 @@ Template.RegisterEvent.events({
       Meteor.call('registerEvent', eventData, email, stripeToken, function(error, result) {
         if(error) {
           toastr.error(error.reason);
-        } else if(result) {
-          toastr.error('Sorry but an unexpected error occurred. Please try again!');
         } else {
           toastr.success('Your event has been successfully created! Please check your email to confirm event details!');
         }
       });
     });
   },
-  'click #pkg-1':function(event, template) {
+  'click label[for="basic"]':function(event, template) {
     template.currentPackage.set(160);
   },
-  'click #pkg-2':function(event, template) {
+  'click label[for="plus"]':function(event, template) {
     template.currentPackage.set(180);
   },
-  'click #pkg-3':function(event, template) {
+  'click label[for="premium"]':function(event, template) {
     template.currentPackage.set(240);
   },
-  'blur #participantNumber': function(event, template) {
+  'blur input[name="participant-num"]': function(event, template) {
+    if(event.target.value == NaN){
+      toastr.error('Please make sure the input is a number');
+      return;
+    }
     template.currentPeople.set(event.target.value);
   },
   'click .add-to-order': function(event){
     $(".add-to-order").removeClass('active');
     $(event.target).addClass('active');
-  }
+  },
 });
 
 Template.RegisterEvent.helpers({

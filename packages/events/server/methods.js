@@ -23,7 +23,13 @@ Meteor.methods({
       throw new Meteor.Error('package-invalid', 'The package you requested was invalid. Please try again!');
     }
 
-    Events.insert({});
+    Events.insert({
+      title: eventData.name,
+      start: eventData.startTime,
+      end: eventData.endTime,
+      packages: eventData.packages,
+      participantNum: eventData.participantNum
+    });
 
     const charge = {
       amount: eventData.cost,
