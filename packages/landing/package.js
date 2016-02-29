@@ -16,7 +16,6 @@ Package.onUse(function(api) {
   api.use('natestrauser:animate-css@3.4.0', 'client');
   api.use('slam310:smooth-scroll@0.0.5', 'client');
   api.use('timmyg:wow@1.0.1', 'client');
-  api.use('vodkabears:vide@0.5.0', 'client');
   api.addFiles('libraries/acore.js', 'client');
   api.addFiles('libraries/background.js', 'client');
   api.addFiles('libraries/transition.js', 'client');
@@ -28,9 +27,9 @@ Package.onUse(function(api) {
   api.addFiles('testimonials/testimonials.css', 'client');
   api.addFiles('testimonials/testimonials.html', 'client');
   api.addFiles('testimonials/testimonials.js', 'client');
-  api.addFiles('video/video.css', 'client');
-  api.addFiles('video/video.html', 'client');
-  api.addFiles('video/video.js', 'client');
+  api.addFiles('header/header.css', 'client');
+  api.addFiles('header/header.html', 'client');
+  api.addFiles('header/header.js', 'client');
   api.addFiles('landing.css', 'client');
   api.addFiles('landing.html', 'client');
 });
