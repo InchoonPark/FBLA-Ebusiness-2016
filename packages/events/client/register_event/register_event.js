@@ -1,7 +1,7 @@
 Template.RegisterEvent.onCreated(function() {
   this.currentPeople = new ReactiveVar(0);
   this.currentPackage = new ReactiveVar(0);
-  this.currentTimeSpan = new ReactiveVar(1);
+  this.currentTimeSpan = new ReactiveVar(0);
   this.currentTotalCost = new ReactiveVar(0);
 });
 
@@ -216,11 +216,11 @@ Template.RegisterEvent.events({
 
 Template.RegisterEvent.helpers({
   'totalCost': function(){
-    var packagePrice = Number(Template.instance().currentPackage.get());
-    var peopleCount = Number(Template.instance().currentPeople.get());
-    var roundedCount = Math.ceil(peopleCount / 10);
-    var hourlyRate = Template.instance().currentTimeSpan.get() * 300;
-    var totalCost = packagePrice + roundedCount * hourlyRate;
+    const packagePrice = Number(Template.instance().currentPackage.get());
+    const peopleCount = Number(Template.instance().currentPeople.get());
+    const timeSpan = Number(Template.instance().currentTimeSpan.get());
+    const roundedCount = Math.ceil(peopleCount / 10);
+    const totalCost = packagePrice * roundedCount + timeSpan * 300;
     Template.instance().currentTotalCost.set(totalCost);
     return totalCost;
   },
