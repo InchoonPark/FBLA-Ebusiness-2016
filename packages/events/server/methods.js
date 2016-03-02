@@ -28,7 +28,9 @@ Meteor.methods({
       start: eventData.startTime,
       end: eventData.endTime,
       packages: eventData.packages,
-      participantNum: eventData.participantNum
+      participantNum: eventData.participantNum,
+      groupName: eventData.groupName,
+      description: eventData.description
     });
 
     const charge = {

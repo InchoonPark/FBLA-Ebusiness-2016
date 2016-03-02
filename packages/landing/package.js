@@ -32,4 +32,5 @@ Package.onUse(function(api) {
   api.addFiles('header/header.js', 'client');
   api.addFiles('landing.css', 'client');
   api.addFiles('landing.html', 'client');
+  api.addFiles('no_js/quote_aside.html', 'client');
 });

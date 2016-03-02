@@ -1,6 +1,6 @@
 footer.footer {
   color: white;
-  background: no-repeat center center scroll;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://thegoldencandle.s3-us-west-1.amazonaws.com/assets/img/footer.jpg'), no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;

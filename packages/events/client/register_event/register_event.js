@@ -1,14 +1,49 @@
 Template.RegisterEvent.onCreated(function() {
   this.currentPeople = new ReactiveVar(0);
   this.currentPackage = new ReactiveVar(0);
+  this.currentTimeSpan = new ReactiveVar(1);
+  this.currentTotalCost = new ReactiveVar(0);
+  templateInstance = this;
 });
 
 Template.RegisterEvent.onRendered(() => {
   //initializes datepicker input
+  
   $('.datepicker').datepicker({startDate: '3d', orientation: 'bottom auto'});
 
   //initializes clockpicker input
   $('.clockpicker').clockpicker();
+
+  $('input[name="ending-time"]').on('change', function() {
+    var startTime = $('input[name="starting-time"]').val();
+    var endTime = $('input[name="ending-time"]').val();
+    var hour1 = Number(startTime.substring(0,2));
+    var hour2 = Number(endTime.substring(0,2));
+    var min1 = Number(startTime.substring(3));
+    var min2 = Number(endTime.substring(3));
+    if(hour1 == NaN || hour2 == NaN || min1 == NaN || min2 == NaN || hour1 > 23 || hour2 > 23 || min1 > 59  || min2 > 59){
+      toastr.error("Please input valid times");
+      return;
+    }
+
+    var hours = hour2 - hour1;
+
+    var mins = min2 - min1;
+    if(mins < 0){
+      hours--;
+      mins += 60;
+    }
+    if(hours < 0){
+      toastr.error('Please make sure that the ending time is after the beginning time.');
+      return;
+    }
+    if(mins>0){
+      hours++;
+    }
+    console.log(hours);
+    templateInstance.currentTimeSpan.set(hours);
+  });
+
 
   //formats card number and cvc inputs live with Stripe jquery.payment library
   $('input[name=card-number]').payment('formatCardNumber');
@@ -31,6 +66,8 @@ Template.RegisterEvent.events({
     const startingTime = $('input[name=starting-time]').val();
     const endingTime = $('input[name=ending-time]').val();
     const packages = $('label.active').attr('for');
+    const groupName = $('input[name=group-name]').val();
+    const description = $('input[name=description]').val();
 
     if(!name){
       toastr.error('Please enter an event name.');
@@ -69,7 +106,7 @@ Template.RegisterEvent.events({
       return;
     }
 
-    const eventData = { name, participantNum, startTime, endTime, packages };
+    const eventData = { name, participantNum, startTime, endTime, packages, groupName, description};
 
     //if user already has Stripe token
     if(Meteor.user() && Meteor.user().stripeToken) {
@@ -144,9 +181,41 @@ Template.RegisterEvent.events({
     template.currentPeople.set(event.target.value);
   },
   'click .add-to-order': function(event){
-    $(".add-to-order").removeClass('active');
-    $(event.target).addClass('active');
+    $(".add-to-order").removeClass('activeOrder');
+    $(event.target).addClass('activeOrder');
   },
+  'input input[name="ending-time"]': function(event, template){
+    console.log("other one");
+    var startTime = $('input[name="starting-time"]').val();
+    var endTime = $('input[name="ending-time"]').val();
+    var hour1 = Number(startTime.substring(0,2));
+    var hour2 = Number(endTime.substring(0,2));
+    var min1 = Number(startTime.substring(3));
+    var min2 = Number(endTime.substring(3));
+    if(hour1 == NaN || hour2 == NaN || min1 == NaN || min2 == NaN || hour1 > 23 || hour2 > 23 || min1 > 59  || min2 > 59){
+      toastr.error("Please input valid times");
+      return;
+    }
+
+    var hours = hour2 - hour1;
+
+    var mins = min2 - min1;
+    if(mins < 0){
+      hours--;
+      mins += 60;
+    }
+    if(hours < 0){
+      toastr.error('Please make sure that the ending time is after the beginning time.');
+      return;
+    }
+    if(mins>0){
+      hours++;
+    }
+    console.log(hours);
+    template.currentTimeSpan.set(hours);
+
+
+  }
 });
 
 Template.RegisterEvent.helpers({
@@ -154,23 +223,26 @@ Template.RegisterEvent.helpers({
     var packagePrice = Number(Template.instance().currentPackage.get());
     var peopleCount = Number(Template.instance().currentPeople.get());
     var roundedCount = Math.ceil(peopleCount / 10);
-
-    return packagePrice * roundedCount;
+    var hourlyRate = Template.instance().currentTimeSpan.get() * 300;
+    var totalCost = packagePrice * roundedCount + hourlyRate;
+    Template.instance().currentTotalCost.set(totalCost);
+    return totalCost;
   },
   'taxCost': function() {
-    var packagePrice = Number(Template.instance().currentPackage.get());
-    var peopleCount = Number(Template.instance().currentPeople.get());
-    var roundedCount = Math.ceil(peopleCount / 10);
-    var tax = packagePrice * roundedCount * .10;
+    var totalCost = Template.instance().currentTotalCost.get();
+
+    var tax = totalCost * .10;
     return tax;
   },
   'finalCost': function() {
-    var packagePrice = Number(Template.instance().currentPackage.get());
-    var peopleCount = Number(Template.instance().currentPeople.get());
-    var roundedCount = Math.ceil(peopleCount / 10);
-    var finalCost = packagePrice * roundedCount * 1.10;
+    var totalCost = Template.instance().currentTotalCost.get();
+    var finalCost = totalCost * 1.10;
     finalCost = finalCost.toFixed(0);
     return finalCost;
-  }
-
-})
+  },
+  'userEmail': function(){
+    if(Meteor.user()){
+      return Meteor.user().emails[0].address;
+    }
+  },
+});
