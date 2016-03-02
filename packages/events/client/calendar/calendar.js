@@ -28,13 +28,6 @@ Template.Calendar.helpers({
 
 Template.Calendar.events({
   "click [data-action=register-event]": function() {
-    if(Meteor.user()) {
       FlowRouter.go("register.event");
-    } else {
-      var view = Blaze.render(Template.LoginRequiredModal, document.body);
-      var domRange = view._domrange;
-      var loginRequiredModal = domRange.$('.modal');
-      loginRequiredModal.modal();
-    }
   }
 });

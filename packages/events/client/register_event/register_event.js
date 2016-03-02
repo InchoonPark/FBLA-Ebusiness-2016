@@ -3,12 +3,11 @@ Template.RegisterEvent.onCreated(function() {
   this.currentPackage = new ReactiveVar(0);
   this.currentTimeSpan = new ReactiveVar(1);
   this.currentTotalCost = new ReactiveVar(0);
-  templateInstance = this;
 });
 
 Template.RegisterEvent.onRendered(() => {
   //initializes datepicker input
-  
+
   $('.datepicker').datepicker({startDate: '3d', orientation: 'bottom auto'});
 
   //initializes clockpicker input
@@ -40,8 +39,7 @@ Template.RegisterEvent.onRendered(() => {
     if(mins>0){
       hours++;
     }
-    console.log(hours);
-    templateInstance.currentTimeSpan.set(hours);
+    this.currentTimeSpan.set(hours);
   });
 
 
@@ -110,11 +108,10 @@ Template.RegisterEvent.events({
 
     //if user already has Stripe token
     if(Meteor.user() && Meteor.user().stripeToken) {
-      Meteor.call('registerEvent', eventData, 'dennis092899@gmail.com', Meteor.user().stripeToken, function(error, result) {
+      Meteor.call('registerEvent', eventData, Meteor.user().emails[0].address, Meteor.user().stripeToken, function(error, result) {
         if(error) {
           toastr.error(error.reason);
         } else {
-          console.log("success");
           toastr.success('Your event has been successfully created! Please check your email to confirm event details!');
         }
       });
@@ -164,14 +161,21 @@ Template.RegisterEvent.events({
       });
     });
   },
-  'click label[for="basic"]':function(event, template) {
-    template.currentPackage.set(160);
-  },
-  'click label[for="plus"]':function(event, template) {
-    template.currentPackage.set(180);
-  },
-  'click label[for="premium"]':function(event, template) {
-    template.currentPackage.set(240);
+  'click input[name=packages]': function(event, template) {
+    const packageValue = event.currentTarget.value;
+    const labelFor = event.currentTarget.id;
+    const $currentLabel = $('label[for=' + labelFor + ']');
+
+    if(template.currentPackage.get() == packageValue) {
+      template.currentPackage.set(0);
+      $currentLabel.html('Add to order');
+      $currentLabel.removeClass('activeOrder');
+    } else {
+      template.currentPackage.set(packageValue);
+      $('.add-to-order').removeClass('activeOrder');
+      $currentLabel.html('Added!');
+      $currentLabel.addClass('activeOrder');
+    }
   },
   'blur input[name="participant-num"]': function(event, template) {
     if(event.target.value == NaN){
@@ -180,12 +184,7 @@ Template.RegisterEvent.events({
     }
     template.currentPeople.set(event.target.value);
   },
-  'click .add-to-order': function(event){
-    $(".add-to-order").removeClass('activeOrder');
-    $(event.target).addClass('activeOrder');
-  },
-  'input input[name="ending-time"]': function(event, template){
-    console.log("other one");
+  'input input[name="ending-time"]': function(event, template) {
     var startTime = $('input[name="starting-time"]').val();
     var endTime = $('input[name="ending-time"]').val();
     var hour1 = Number(startTime.substring(0,2));
@@ -211,10 +210,7 @@ Template.RegisterEvent.events({
     if(mins>0){
       hours++;
     }
-    console.log(hours);
     template.currentTimeSpan.set(hours);
-
-
   }
 });
 
@@ -224,7 +220,7 @@ Template.RegisterEvent.helpers({
     var peopleCount = Number(Template.instance().currentPeople.get());
     var roundedCount = Math.ceil(peopleCount / 10);
     var hourlyRate = Template.instance().currentTimeSpan.get() * 300;
-    var totalCost = packagePrice * roundedCount + hourlyRate;
+    var totalCost = packagePrice + roundedCount * hourlyRate;
     Template.instance().currentTotalCost.set(totalCost);
     return totalCost;
   },

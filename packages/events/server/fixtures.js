@@ -45,7 +45,7 @@ if(!Events.findOne()){
 		participantNum: 153
 	});
 	Events.insert({
-		title: "Chrissie's wedding",
+		title: "Jeffrey Khong and Grace Lam's Zesty Wedding",
 		start: new Date("March 2, 2016 14:00:00"),
 		end: new Date("March 2, 2016 18:00:00"),
 		packages: "premium",
@@ -162,6 +162,14 @@ if(!Events.findOne()){
 	});
 	Events.insert({
 		title: "National Star Wars Day",
+		start: new Date("March 17, 2016 8:00:00"),
+		allDay: true,
+		color: "#1abc9c",
+		packages: "premium",
+		participantNum: 500
+	});
+	Events.insert({
+		title: "",
 		start: new Date("March 17, 2016 8:00:00"),
 		allDay: true,
 		color: "#1abc9c",

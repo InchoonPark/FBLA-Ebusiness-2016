@@ -23,6 +23,11 @@ Meteor.methods({
       throw new Meteor.Error('package-invalid', 'The package you requested was invalid. Please try again!');
     }
 
+    const sameDayEvent = Events.findOne({ start: eventData.startTime });
+    if(sameDayEvent) {
+      throw new Meteor.Error('same-day-event', 'Sorry, but ${sameDayEvent.name} is on the same day. Please try another date!');
+    }
+
     Events.insert({
       title: eventData.name,
       start: eventData.startTime,
