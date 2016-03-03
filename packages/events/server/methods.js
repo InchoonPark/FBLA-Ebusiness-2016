@@ -13,12 +13,14 @@ Meteor.methods({
     });*/
     check(stripeToken, String);
 
-    if(eventData.packages === 'basic') {
+    if(eventData.packages === '160') {
       eventData.cost = Math.ceil(eventData.participantNum / 10) * 10 * 16;
-    } else if(eventData.packages === 'plus') {
+    } else if(eventData.packages === '180') {
       eventData.cost = Math.ceil(eventData.participantNum / 10) * 180;
-    } else if(eventData.packages === 'premium') {
+    } else if(eventData.packages === '240') {
       eventData.cost = Math.ceil(eventData.participantNum / 10) * 240;
+    } else if(eventData.packages === '') {
+      eventData.cost = 0;
     } else {
       throw new Meteor.Error('package-invalid', 'The package you requested was invalid. Please try again!');
     }

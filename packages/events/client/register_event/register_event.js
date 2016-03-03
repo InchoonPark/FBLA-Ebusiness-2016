@@ -3,6 +3,8 @@ Template.RegisterEvent.onCreated(function() {
   this.currentPackage = new ReactiveVar(0);
   this.currentTimeSpan = new ReactiveVar(0);
   this.currentTotalCost = new ReactiveVar(0);
+  //"this" only works in the oncreated block
+  templateInstance = this;
 });
 
 Template.RegisterEvent.onRendered(() => {
@@ -39,7 +41,36 @@ Template.RegisterEvent.onRendered(() => {
     if(mins>0){
       hours++;
     }
-    this.currentTimeSpan.set(hours);
+    //if u do "this" here "this" doesnt = template.instance()
+    templateInstance.currentTimeSpan.set(hours);
+  });
+  //separate handler for diff errors
+  $('input[name="starting-time"]').on('change', function() {
+    var startTime = $('input[name="starting-time"]').val();
+    var endTime = $('input[name="ending-time"]').val();
+    var hour1 = Number(startTime.substring(0,2));
+    var hour2 = Number(endTime.substring(0,2));
+    var min1 = Number(startTime.substring(3));
+    var min2 = Number(endTime.substring(3));
+    if(hour1 == NaN || hour2 == NaN || min1 == NaN || min2 == NaN || hour1 > 23 || hour2 > 23 || min1 > 59  || min2 > 59){
+      toastr.error("Please input valid times");
+      return;
+    }
+
+    var hours = hour2 - hour1;
+
+    var mins = min2 - min1;
+    if(mins < 0){
+      hours--;
+      mins += 60;
+    }
+    if(hours < 0){
+      return;
+    }
+    if(mins>0){
+      hours++;
+    }
+    templateInstance.currentTimeSpan.set(hours);
   });
 
 
