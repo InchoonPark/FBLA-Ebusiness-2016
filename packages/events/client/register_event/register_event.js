@@ -1,21 +1,45 @@
-Template.RegisterEvent.onCreated(function() {
-  this.currentPeople = new ReactiveVar(0);
-  this.currentPackage = new ReactiveVar(0);
-  this.currentTimeSpan = new ReactiveVar(0);
-  this.currentTotalCost = new ReactiveVar(0);
-  //"this" only works in the oncreated block
-  templateInstance = this;
+Template.RegisterEvent.onCreated(() => {
+  const template = Template.instance();
+  template.currentPeople = new ReactiveVar(0);
+  template.currentPackage = new ReactiveVar(0);
+  template.currentTimeSpan = new ReactiveVar(0);
+  template.currentTotalCost = new ReactiveVar(0);
 });
 
 Template.RegisterEvent.onRendered(() => {
-  //initializes datepicker input
+  //formats card number and cvc inputs live with Stripe jquery.payment library
+  $('input[name=card-number]').payment('formatCardNumber');
+  $('input[name=cvc]').payment('formatCardCVC');
 
+  //initializes datepicker input
   $('.datepicker').datepicker({startDate: '3d', orientation: 'bottom auto'});
 
   //initializes clockpicker input
   $('.clockpicker').clockpicker();
 
-  $('input[name="ending-time"]').on('change', function() {
+  //set up event handlers for clockpickers
+  $('input[name="starting-time"]').on('change', () => {
+    const startTimeString = $('input[name="starting-time"]').val();
+    const startTimeHour = parseInt(startTime.substring(0, 2));
+    const startTimeMin = parseInt(startTime.substring(3));
+    if(hour1 == NaN || hour2 == NaN || min1 == NaN || min2 == NaN || hour1 > 23 || hour2 > 23 || min1 > 59  || min2 > 59){
+      toastr.error("Please input valid times");
+      return;
+    }
+  });
+
+  $('input[name="ending-time"]').on('change', () => {
+    const endTimeString = $('input[name="ending-time"]').val();
+    const endTimeHour = parseInt(endTime.substring(0, 2));
+    const endTimeMin = parseInt(endTime.substring(3));
+    if(hour1 == NaN || hour2 == NaN || min1 == NaN || min2 == NaN || hour1 > 23 || hour2 > 23 || min1 > 59  || min2 > 59){
+      toastr.error("Please input valid times");
+      return;
+    }
+  });
+
+
+  /*$('input[name="ending-time"]').on('change', function() {
     var startTime = $('input[name="starting-time"]').val();
     var endTime = $('input[name="ending-time"]').val();
     var hour1 = Number(startTime.substring(0,2));
@@ -46,12 +70,12 @@ Template.RegisterEvent.onRendered(() => {
   });
   //separate handler for diff errors
   $('input[name="starting-time"]').on('change', function() {
-    var startTime = $('input[name="starting-time"]').val();
-    var endTime = $('input[name="ending-time"]').val();
-    var hour1 = Number(startTime.substring(0,2));
-    var hour2 = Number(endTime.substring(0,2));
-    var min1 = Number(startTime.substring(3));
-    var min2 = Number(endTime.substring(3));
+    const startTimeString = $('input[name="starting-time"]').val();
+    const endTimeString = $('input[name="ending-time"]').val();
+    const startTimeHour = parseInt(startTime.substring(0, 2));
+    const startTimeMin = parseInt(startTime.substring(3));
+    const endTimeHour = parseInt(endTime.substring(0, 2));
+    const endTimeMin = parseInt(endTime.substring(3));
     if(hour1 == NaN || hour2 == NaN || min1 == NaN || min2 == NaN || hour1 > 23 || hour2 > 23 || min1 > 59  || min2 > 59){
       toastr.error("Please input valid times");
       return;
@@ -71,12 +95,7 @@ Template.RegisterEvent.onRendered(() => {
       hours++;
     }
     templateInstance.currentTimeSpan.set(hours);
-  });
-
-
-  //formats card number and cvc inputs live with Stripe jquery.payment library
-  $('input[name=card-number]').payment('formatCardNumber');
-  $('input[name=cvc]').payment('formatCardCVC');
+  });*/
 
   $("#prices").sticky({
     topSpacing: 90,
@@ -91,13 +110,14 @@ Template.RegisterEvent.events({
     //get event related input
     const name = $('input[name=event-name]').val();
     const date = $('input[name=date]').val();
-    const participantNum = Number($('input[name=participant-num]').val());
+    const participantNum = parseInt($('input[name=participant-num]').val());
     const startingTime = $('input[name=starting-time]').val();
     const endingTime = $('input[name=ending-time]').val();
     const packages = $('label.active').attr('for');
     const groupName = $('input[name=group-name]').val();
     const description = $('input[name=description]').val();
 
+    //check if event input exists
     if(!name){
       toastr.error('Please enter an event name.');
       return;
@@ -119,16 +139,17 @@ Template.RegisterEvent.events({
       return;
     }
 
-    var startTime = "T" + startingTime + ":00";
-    var endTime = "T" + endingTime + ":00";
+    /*
+    const startTime = 'T' + startingTime + ':00';
+    const endTime = 'T' + endingTime + ':00';
 
-    var eventMonth = date.substring(0,2);
-    var eventDay = date.substring(3,5);
-    var eventYear = date.substring(6);
-    var eventDate = eventYear + "-" + eventMonth + "-" + eventDay;
+    const eventMonth = date.substring(0,2);
+    const eventDay = date.substring(3,5);
+    const eventYear = date.substring(6);
+    const eventDate = eventYear + '-' + eventMonth + '-' + eventDay;
 
-    var startTime = new Date(eventDate + startTime);
-    var endTime = new Date(eventDate + endTime);
+    const startTime = new Date(eventDate + startTime);
+    const endTime = new Date(eventDate + endTime);
 
     if(startTime == "Invalid Date" || endTime == "Invalid Date"){
       toastr.error('Please input a valid date and time.');
@@ -190,7 +211,7 @@ Template.RegisterEvent.events({
           toastr.success('Your event has been successfully created! Please check your email to confirm event details!');
         }
       });
-    });
+    });*/
   },
   'click input[name=packages]': function(event, template) {
     const packageValue = event.currentTarget.value;

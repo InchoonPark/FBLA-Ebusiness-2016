@@ -8,6 +8,7 @@ Package.onUse(function(api) {
   const both = ['client', 'server'];
   api.versionsFrom('1.2.1');
   api.use('ecmascript');
+  api.use('reactive-var', 'client');
   api.use('templating', 'client');
   api.use('check', 'server');
   api.use('andrasph:clockpicker@0.0.2', 'client');

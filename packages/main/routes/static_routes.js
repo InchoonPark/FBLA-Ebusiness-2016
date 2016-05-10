@@ -19,13 +19,6 @@ FlowRouter.route('/gallery', {
   name: 'gallery'
 });
 
-FlowRouter.route('/calendar', {
-  action: function() {
-    BlazeLayout.render('MasterLayout', { main: 'Calendar' });
-  },
-  name: 'calendar'
-});
-
 FlowRouter.route('/contact', {
   action: function() {
     BlazeLayout.render('MasterLayout', { main: 'Contact' });
@@ -59,22 +52,4 @@ FlowRouter.route('/faqs', {
     BlazeLayout.render('MasterLayout', { main: 'Faqs' });
   },
   name: 'faqs'
-});
-
-FlowRouter.route('/logout', {
-  action: function() {
-    if(Meteor.userId()) {
-      Meteor.logout(function(error) {
-        if(error) {
-          toastr.error(error.reason);
-        } else {
-          toastr.success('Successfully logged out!');
-        }
-        FlowRouter.go('home');
-      });
-    } else {
-      toastr.error('You must have an account to log out!');
-      FlowRouter.go('home');
-    }
-  }
 });
