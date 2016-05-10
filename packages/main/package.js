@@ -30,8 +30,7 @@ Package.onUse(function(api) {
   api.addFiles('static/guarantees.html', 'client');
   api.addFiles('static/mission_statement.html', 'client');
   api.addFiles('static/policies.html', 'client');
-  api.addFiles('routes/event_routes.js', 'client');
-  api.addFiles('routes/static_routes.js', 'client');
+  api.addFiles('routes.js', 'client');
   api.addFiles('styles/bootstrap_overrides.css', 'client');
   api.addFiles('styles/button.css', 'client');
   api.addFiles('styles/hr.css', 'client');
