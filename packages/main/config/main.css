@@ -11,7 +11,42 @@
 }
 
 
-
+.review-name {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.review-small {
+  padding-top: 5px;
+}
+.review-lead {
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+.review-quote{
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.review-stars{
+  padding-top: 30px;
+}
+.review-row {
+  margin-bottom: 70px;
+}
+.margin-bottom-hr{
+  margin-bottom: 40px;
+}
+.negative-top-margin{
+  margin-top: -30px;
+}
+#email{
+  margin-bottom: 10px;
+  border-radius: 4px !important;
+}
 
 .text-primary {
   color: #ffc153;

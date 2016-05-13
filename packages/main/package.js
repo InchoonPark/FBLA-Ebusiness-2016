@@ -36,4 +36,5 @@ Package.onUse(function(api) {
   api.addFiles('styles/hr.css', 'client');
   api.addFiles('styles/text.css', 'client');
   api.addFiles('styles/utility.css', 'client');
+  api.addFiles('static/copyright.html', 'client');
 });

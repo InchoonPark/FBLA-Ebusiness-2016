@@ -47,6 +47,13 @@ FlowRouter.route('/policies', {
   name: 'policies'
 });
 
+FlowRouter.route('/copyright', {
+  action: function() {
+    BlazeLayout.render('MasterLayout', { main: 'Copyright' });
+  },
+  name: 'copyright'
+});
+
 FlowRouter.route('/faqs', {
   action: function() {
     BlazeLayout.render('MasterLayout', { main: 'Faqs' });
@@ -70,7 +77,7 @@ FlowRouter.route('/register-event', {
 
 FlowRouter.route('/reviews', {
   action: function() {
-    BlazeLayout.render('MasterLayout', { main: 'Reviews '});
+    BlazeLayout.render('MasterLayout', { main: 'Reviews' });
   },
   name: 'reivews'
 });

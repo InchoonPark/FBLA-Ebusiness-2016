@@ -1,3 +1,10 @@
+.top-margin-btn{
+  margin-top: 30px;
+  margin-bottom: -30px;
+}
+.yellow-star{
+  color: #f1c40f;
+}
 .testimonials {
   text-align: center;
 }

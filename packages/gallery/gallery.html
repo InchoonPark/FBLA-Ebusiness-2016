@@ -1,15 +1,15 @@
 <template name="Gallery">
-<div class="container text-center">
-<h2>Gallery</h2>
-<hr class="colored">
-<div class="row">
-{{#each galleryPictures}}
-<div class="col-md-3">
-<a class="gallery-popup" href="https://d2713zaslmgu0p.cloudfront.net/assets/img/gallery-{{_id}}.jpg">
-<img src="https://d2713zaslmgu0p.cloudfront.net/assets/img/gallery-thumb-{{_id}}.jpg" class="img-responsive" style="margin-bottom: 30px;">
-</a>
-</div>
-{{/each}}
-</div>
-</div>
+	<div class="container text-center">
+		<h2>Gallery</h2>
+		<hr class="colored">
+		<div class="row">
+			{{#each galleryPictures}}
+			<div class="col-md-3">
+				<a class="gallery-popup" href="https://d2713zaslmgu0p.cloudfront.net/assets/img/gallery-{{_id}}.jpg">
+					<img src="https://d2713zaslmgu0p.cloudfront.net/assets/img/gallery-thumb-{{_id}}.jpg" class="img-responsive" style="margin-bottom: 30px;">
+				</a>
+			</div>
+			{{/each}}
+		</div>
+	</div>
 </template>
