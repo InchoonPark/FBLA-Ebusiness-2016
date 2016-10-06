@@ -26,3 +26,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+bundle.crt
+private.key
+mup.json
